@@ -185,4 +185,27 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+.filters {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 40px;
+}
+
+.filters button {
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	color: #1D6154;
+	background-color: white;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+.filters button:hover {
+	background-color: #1D6154;
+	color: white;
+}
 
