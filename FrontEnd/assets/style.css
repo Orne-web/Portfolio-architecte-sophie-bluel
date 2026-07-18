@@ -209,3 +209,24 @@ footer nav ul {
 	color: white;
 }
 
+#edit-mode {
+    display: none;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+.title-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#modify-btn {
+    display: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}

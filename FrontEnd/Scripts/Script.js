@@ -1,3 +1,23 @@
+const token = localStorage.getItem("token");
+
+if (token) {
+    document.querySelector("#edit-mode").style.display = "block";
+    document.querySelector("#modify-btn").style.display = "block";
+    document.querySelector("#filters").style.display= "none";
+}
+if (token) {
+    const loginLink = document.querySelector("#login-link");
+    
+    loginLink.textContent = "logout";
+    loginLink.href = "#";
+
+    loginLink.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        localStorage.removeItem("token");
+        window.location.href = "index.html";
+    });
+}
 let works = [];
 
 async function getWorks() {
