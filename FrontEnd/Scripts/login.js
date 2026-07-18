@@ -8,6 +8,8 @@ form.addEventListener("submit", async (event) => {
 
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
+    console.log("EMAIL :", email);
+    console.log("PASSWORD :", password);
 
     const response = await fetch("http://localhost:5678/api/users/login", {
 
