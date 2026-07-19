@@ -51,6 +51,7 @@ function displayWorks(worksList) {
         gallery.appendChild(figure);
 
     });
+    
 }
 
 
@@ -87,3 +88,46 @@ hotelsButton.addEventListener("click", () => {
     displayWorks(hotelsWorks);
 
 });
+const modifyBtn = document.querySelector("#modify-btn");
+const modal = document.querySelector("#modal");
+const closeModal = document.querySelector("#close-modal");
+const modalGallery = document.querySelector(".modal-gallery");
+modifyBtn.addEventListener("click", () => {
+
+    modal.style.display = "block";
+
+    displayModalWorks(works);
+
+});
+
+
+closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+
+window.addEventListener("click", (event) => {
+
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+
+});
+function displayModalWorks(worksList) {
+
+    modalGallery.innerHTML = "";
+
+    worksList.forEach(work => {
+
+        const figure = document.createElement("figure");
+
+        const image = document.createElement("img");
+        image.src = work.imageUrl;
+        image.alt = work.title;
+
+        figure.appendChild(image);
+
+        modalGallery.appendChild(figure);
+
+    });
+}

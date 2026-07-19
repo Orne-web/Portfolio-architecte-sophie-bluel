@@ -230,3 +230,42 @@ footer nav ul {
     background: none;
     cursor: pointer;
 }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    width: 500px;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+}
+
+#close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    font-size: 25px;
+}
+.modal-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.modal-gallery img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
