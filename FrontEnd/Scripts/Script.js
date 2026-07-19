@@ -28,13 +28,11 @@ async function getWorks() {
 }
 
 
-function displayWorks(worksList) {
+ function displayModalWorks(worksList) {
 
-    const gallery = document.querySelector(".gallery");
+        modalGallery.innerHTML = "";
 
-    gallery.innerHTML = "";
-
-    worksList.forEach(work => {
+        worksList.forEach(work => {
 
         const figure = document.createElement("figure");
 
@@ -42,16 +40,22 @@ function displayWorks(worksList) {
         image.src = work.imageUrl;
         image.alt = work.title;
 
-        const caption = document.createElement("figcaption");
-        caption.textContent = work.title;
+
+        const deleteButton = document.createElement("button");
+       deleteButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+       deleteButton.classList.add("delete-btn");
+
+
+        deleteButton.addEventListener("click", () => {
+            console.log(work.id);
+        });
 
         figure.appendChild(image);
-        figure.appendChild(caption);
+        figure.appendChild(deleteButton);
 
-        gallery.appendChild(figure);
+        modalGallery.appendChild(figure);
 
     });
-    
 }
 
 
@@ -113,21 +117,3 @@ window.addEventListener("click", (event) => {
     }
 
 });
-function displayModalWorks(worksList) {
-
-    modalGallery.innerHTML = "";
-
-    worksList.forEach(work => {
-
-        const figure = document.createElement("figure");
-
-        const image = document.createElement("img");
-        image.src = work.imageUrl;
-        image.alt = work.title;
-
-        figure.appendChild(image);
-
-        modalGallery.appendChild(figure);
-
-    });
-}
