@@ -126,6 +126,22 @@ const addModal = document.querySelector("#add-modal");
 const closeAddModal = document.querySelector("#close-add-modal");
 const backModal = document.querySelector("#back-modal");
 
+const imageInput = document.querySelector("#image");
+const preview = document.querySelector("#preview");
+
+imageInput.addEventListener("change", () => {
+
+    const file = imageInput.files[0];
+
+    if (file) {
+
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+
+    }
+
+});
+
 closeAddModal.addEventListener("click", () => {
 
     console.log("CROIX AJOUT PHOTO CLIQUEE");
