@@ -27,7 +27,31 @@ async function getWorks() {
     displayWorks(works);
 }
 
+function displayWorks(worksList) {
 
+    const gallery = document.querySelector(".gallery");
+
+    gallery.innerHTML = "";
+
+    worksList.forEach(work => {
+
+        const figure = document.createElement("figure");
+
+        const image = document.createElement("img");
+        image.src = work.imageUrl;
+        image.alt = work.title;
+
+        const caption = document.createElement("figcaption");
+        caption.textContent = work.title;
+
+        figure.appendChild(image);
+        figure.appendChild(caption);
+
+        gallery.appendChild(figure);
+
+    });
+
+}
  function displayModalWorks(worksList) {
 
         modalGallery.innerHTML = "";
@@ -46,9 +70,10 @@ async function getWorks() {
        deleteButton.classList.add("delete-btn");
 
 
-        deleteButton.addEventListener("click", () => {
-            console.log(work.id);
-        });
+       deleteButton.addEventListener("click", () => {
+        deleteWork(work.id);
+    });
+        
 
         figure.appendChild(image);
         figure.appendChild(deleteButton);
@@ -117,3 +142,36 @@ window.addEventListener("click", (event) => {
     }
 
 });
+async function deleteWork(id) {
+
+    const token = localStorage.getItem("token");
+
+    try {
+
+        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+
+            method: "DELETE",
+
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+
+        });
+
+        if (!response.ok) {
+            throw new Error("Erreur lors de la suppression");
+        }
+
+        // On retire le projet du tableau
+        works = works.filter(work => work.id !== id);
+
+        // On met à jour les deux galeries
+        displayWorks(works);
+        displayModalWorks(works);
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+}
