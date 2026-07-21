@@ -308,3 +308,17 @@ footer nav ul {
 .delete-btn i {
     font-size: 10px;
 }
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+#back-modal {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}

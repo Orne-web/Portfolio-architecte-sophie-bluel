@@ -121,6 +121,31 @@ const modifyBtn = document.querySelector("#modify-btn");
 const modal = document.querySelector("#modal");
 const closeModal = document.querySelector("#close-modal");
 const modalGallery = document.querySelector(".modal-gallery");
+const addPhotoBtn = document.querySelector("#add-photo");
+const addModal = document.querySelector("#add-modal");
+const closeAddModal = document.querySelector("#close-add-modal");
+const backModal = document.querySelector("#back-modal");
+
+closeAddModal.addEventListener("click", () => {
+
+    console.log("CROIX AJOUT PHOTO CLIQUEE");
+
+    addModal.style.display = "none";
+
+});
+addPhotoBtn.addEventListener("click", () => {
+
+    modal.style.display = "none";
+    addModal.style.display = "block";
+
+});
+
+backModal.addEventListener("click", () => {
+
+    addModal.style.display = "none";
+    modal.style.display = "block";
+
+});
 modifyBtn.addEventListener("click", () => {
 
     modal.style.display = "block";
@@ -130,9 +155,6 @@ modifyBtn.addEventListener("click", () => {
 });
 
 
-closeModal.addEventListener("click", () => {
-    modal.style.display = "none";
-});
 
 
 window.addEventListener("click", (event) => {
