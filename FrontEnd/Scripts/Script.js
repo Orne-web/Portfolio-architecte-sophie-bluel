@@ -128,6 +128,9 @@ const backModal = document.querySelector("#back-modal");
 
 const imageInput = document.querySelector("#image");
 const preview = document.querySelector("#preview");
+const addForm = document.querySelector("#add-form");
+const titleInput = document.querySelector("#title");
+const categoryInput = document.querySelector("#category");
 
 imageInput.addEventListener("change", () => {
 
@@ -139,6 +142,11 @@ imageInput.addEventListener("change", () => {
         preview.style.display = "block";
 
     }
+
+});
+closeModal.addEventListener("click", () => {
+
+    modal.style.display = "none";
 
 });
 
@@ -213,3 +221,56 @@ async function deleteWork(id) {
 
     }
 }
+addForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("image", imageInput.files[0]);
+    formData.append("title", titleInput.value);
+    formData.append("category", categoryInput.value);
+
+
+    const token = localStorage.getItem("token");
+
+
+    try {
+
+        const response = await fetch("http://localhost:5678/api/works", {
+
+            method: "POST",
+
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+
+            body: formData
+
+        });
+
+
+        if (!response.ok) {
+
+            throw new Error("Erreur lors de l'ajout du projet");
+
+        }
+
+
+        const newWork = await response.json();
+
+        console.log("Nouveau projet :", newWork);
+        works.push(newWork);
+
+        displayWorks(works);
+
+        displayModalWorks(works);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+});
