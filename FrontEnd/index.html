@@ -117,10 +117,12 @@
 	
 			<h3>Galerie photo</h3>
 
-      <div class="modal-gallery"></div>
+			<div class="modal-gallery"></div>
 
-      <button id="add-photo">Ajouter une photo</button>
-	
+          <div class="separator"></div>
+
+         <button id="add-photo">Ajouter une photo</button>
+
 		</div>
 	</div>
 	<div id="add-modal" class="modal">
@@ -137,9 +139,9 @@
 				<div class="image-upload">
 					<img id="preview" src="" alt="Aperçu de l'image">
 
-					<i class="fa-regular fa-image"></i>
+					<i id="upload-icon" class="fa-regular fa-image"></i>
 				
-					<label for="image" class="upload-button">
+					<label id="upload-label" for="image" class="upload-button">
 						+ Ajouter photo
 					</label>
 				
@@ -150,7 +152,7 @@
 						hidden
 					>
 				
-					<p>jpg, png : 4mo max</p>
+					<p id="upload-text">jpg, png : 4mo max</p>
 				
 				</div>
 	
@@ -165,9 +167,12 @@
 					<option value="3">Hôtels & restaurants</option>
 	
 				</select>
-	
+
+				<div class="separator"></div>
+
 				<button type="submit">Valider</button>
-	
+				
+
 			</form>
 	
 		</div>

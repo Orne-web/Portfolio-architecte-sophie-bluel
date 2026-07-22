@@ -128,6 +128,11 @@ const backModal = document.querySelector("#back-modal");
 
 const imageInput = document.querySelector("#image");
 const preview = document.querySelector("#preview");
+
+const uploadIcon = document.querySelector("#upload-icon");
+const uploadLabel = document.querySelector("#upload-label");
+const uploadText = document.querySelector("#upload-text");
+
 const addForm = document.querySelector("#add-form");
 const titleInput = document.querySelector("#title");
 const categoryInput = document.querySelector("#category");
@@ -140,8 +145,13 @@ imageInput.addEventListener("change", () => {
 
         preview.src = URL.createObjectURL(file);
         preview.style.display = "block";
-
+    
+        uploadIcon.style.display = "none";
+        uploadLabel.style.display = "none";
+        uploadText.style.display = "none";
+    
     }
+    
 
 });
 closeModal.addEventListener("click", () => {
@@ -156,6 +166,8 @@ closeAddModal.addEventListener("click", () => {
 
     addModal.style.display = "none";
 
+    resetAddForm();
+
 });
 addPhotoBtn.addEventListener("click", () => {
 
@@ -168,6 +180,8 @@ backModal.addEventListener("click", () => {
 
     addModal.style.display = "none";
     modal.style.display = "block";
+
+    resetAddForm();
 
 });
 modifyBtn.addEventListener("click", () => {
@@ -274,3 +288,15 @@ addForm.addEventListener("submit", async (event) => {
     }
 
 });
+function resetAddForm() {
+
+    addForm.reset();
+
+    preview.src = "";
+    preview.style.display = "none";
+
+    uploadIcon.style.display = "block";
+    uploadLabel.style.display = "block";
+    uploadText.style.display = "block";
+
+}
