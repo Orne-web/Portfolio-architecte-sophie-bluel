@@ -1,10 +1,19 @@
+ // Vérification de la présence du token administrateur
 const token = localStorage.getItem("token");
 
 if (token) {
-    document.querySelector("#edit-mode").style.display = "block";
+
+    // Affiche la barre noire "Mode édition" uniquement pour l'administrateur
+    document.querySelector("#edit-mode").classList.add("active");
+
+    // Affiche le bouton Modifier uniquement en mode administrateur
     document.querySelector("#modify-btn").style.display = "block";
-    document.querySelector("#filters").style.display= "none";
+
+    // Cache les filtres en mode édition
+    document.querySelector("#filters").style.display = "none";
 }
+
+ // gère le login logout pour accéder à la page administrateur
 if (token) {
     const loginLink = document.querySelector("#login-link");
     

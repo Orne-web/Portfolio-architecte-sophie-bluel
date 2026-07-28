@@ -48,16 +48,19 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
+	margin:0;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+    max-width: 1140px;
+	margin: 30px auto; 
 }
+
 section {
 	margin: 50px 0
 }
@@ -125,6 +128,11 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+main {
+    max-width: 1000px;
+    margin: auto;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -191,7 +199,7 @@ footer nav ul {
 	gap: 10px;
 	margin-bottom: 40px;
 }
-
+ /* les filtres d'affiche de la gallerie photos*/
 .filters button {
 	font-family: 'Syne';
 	font-weight: 700;
@@ -209,7 +217,10 @@ footer nav ul {
 	color: white;
 }
 
-#edit-mode {
+
+/* Barre noire du mode édition :
+   cachée par défaut pour les visiteurs */
+   #edit-mode {
     display: none;
     background-color: black;
     color: white;
@@ -217,6 +228,14 @@ footer nav ul {
     padding: 10px;
     font-weight: bold;
 }
+
+/* Affichage uniquement quand l'utilisateur est connecté */
+#edit-mode.active {
+    display: block;
+    margin-bottom: 30px; /* Espace entre la barre édition et le header */
+}
+
+/* le titre mode edition dans la barre noire*/
 .title-edit {
     display: flex;
     justify-content: center;
@@ -519,4 +538,12 @@ footer nav ul {
 
     font-weight: 600;
 
+}
+.title-projects {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#modify-btn {
+    transform: translateY(-12px);
 }
