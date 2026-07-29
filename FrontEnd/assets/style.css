@@ -101,28 +101,30 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+/* Section de présentation de Sophie */
 #introduction {
-	display: flex;
-	align-items: center;
-}
-#introduction figure {
-	flex: 1
-}
-#introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+    display: flex;
+    align-items: center;
+    gap: 60px;
 }
 
+/* La photo et le texte occupent chacun une moitié */
+#introduction figure,
 #introduction article {
-	flex: 1
+    flex: 1;
+}
+
+/* La photo remplit toute sa colonne */
+#introduction img {
+    display: block;
+    width: 100%;
 }
 #introduction h2 {
 	margin-bottom: 1em;
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+	margin-bottom: 1.5em;
 }
 #portfolio h2 {
 	text-align: center;
@@ -546,4 +548,62 @@ footer nav ul {
 }
 #modify-btn {
     transform: translateY(-12px);
+}
+/* Mise en page du formulaire de connexion */
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    margin: 0 auto;
+}
+#login-form label {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Ajoute un espace sous les champs Email et Mot de passe */
+#login-form input[type="email"],
+#login-form input[type="password"] {
+    margin-bottom: 10px;
+}
+
+/* Ajoute un espace plus petit sous le bouton */
+#login-form input[type="submit"] {
+    margin-bottom: 5px;
+    width: 180px;          /* Largeur du bouton */
+    height: 30px;
+    box-shadow: none;
+    border: none;
+}
+/* Centre la section de connexion dans la largeur du main */
+#login {
+    width: 380px;       /* Largeur du bloc titre + formulaire */
+    margin: 100px auto 0; /* Espace en haut, puis centrage horizontal */
+}
+
+/* Centre uniquement le titre au-dessus du formulaire */
+#login h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 35px; /* Espace entre le titre et le formulaire */
+}
+
+/* Style des champs de saisie de la page de connexion */
+#login-form input[type="email"],
+#login-form input[type="password"] {
+    height: 40px; /* Donne une hauteur proche de la maquette */
+    border: none; /* Supprime les lignes noires autour des champs */
+    background-color: white; /* Conserve le fond blanc */
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1); /* Ajoute l’ombre légère visible sur la maquette */
+    padding: 0 15px; /* Évite que le texte touche les bords */
+    outline: none; /* Supprime le contour noir au clic */
+}
+
+/* Style du lien de réinitialisation du mot de passe */
+#login-form a {
+    margin-top: 10px;          /* Ajoute un espace entre le bouton et le lien */
+    text-align: center;        /* Centre le lien sous le bouton */
+    color: #3D3D3D;            /* Couleur identique à la maquette */
+    font-size: 14px;           /* Taille du texte */
+    text-decoration: underline; /* Le lien reste souligné */
 }
