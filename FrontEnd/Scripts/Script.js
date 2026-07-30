@@ -92,40 +92,73 @@ function displayWorks(worksList) {
     });
 }
 
-
 getWorks();
+
+/* Récupère tous les boutons de filtre */
+const filterButtons = document.querySelectorAll(".filters button");
+
 const allButton = document.querySelector("#all");
+const objectsButton = document.querySelector("#objects");
+const apartmentsButton = document.querySelector("#apartments");
+const hotelsButton = document.querySelector("#hotels");
+
+/* Active automatiquement le bouton "Tous" au chargement */
+allButton.classList.add("active");
+
+/* Change le bouton actif lorsqu'un filtre est sélectionné */
+function setActiveFilter(selectedButton) {
+
+    /* Retire la classe active de tous les boutons */
+    filterButtons.forEach(button => {
+        button.classList.remove("active");
+    });
+
+    /* Ajoute la classe active au bouton qui vient d'être cliqué */
+    selectedButton.classList.add("active");
+}
 
 allButton.addEventListener("click", () => {
+
+    /* Affiche tous les projets */
     displayWorks(works);
+
+    /* Active visuellement le bouton "Tous" */
+    setActiveFilter(allButton);
 });
-const objectsButton = document.querySelector("#objects");
 
 objectsButton.addEventListener("click", () => {
 
+    /* Garde uniquement les projets de la catégorie Objets */
     const objectsWorks = works.filter(work => work.categoryId === 1);
 
     displayWorks(objectsWorks);
 
+    /* Active visuellement le bouton "Objets" */
+    setActiveFilter(objectsButton);
 });
-const apartmentsButton = document.querySelector("#apartments");
 
 apartmentsButton.addEventListener("click", () => {
 
+    /* Garde uniquement les projets de la catégorie Appartements */
     const apartmentsWorks = works.filter(work => work.categoryId === 2);
 
     displayWorks(apartmentsWorks);
 
+    /* Active visuellement le bouton "Appartements" */
+    setActiveFilter(apartmentsButton);
 });
-const hotelsButton = document.querySelector("#hotels");
 
 hotelsButton.addEventListener("click", () => {
 
+    /* Garde uniquement les projets de la catégorie Hôtels et restaurants */
     const hotelsWorks = works.filter(work => work.categoryId === 3);
 
     displayWorks(hotelsWorks);
 
+    /* Active visuellement le bouton "Hôtels & restaurants" */
+    setActiveFilter(hotelsButton);
 });
+
 const modifyBtn = document.querySelector("#modify-btn");
 const modal = document.querySelector("#modal");
 const closeModal = document.querySelector("#close-modal");
@@ -135,17 +168,32 @@ const addModal = document.querySelector("#add-modal");
 const closeAddModal = document.querySelector("#close-add-modal");
 const backModal = document.querySelector("#back-modal");
 
-const imageInput = document.querySelector("#image");
-const preview = document.querySelector("#preview");
-
 const uploadIcon = document.querySelector("#upload-icon");
 const uploadLabel = document.querySelector("#upload-label");
 const uploadText = document.querySelector("#upload-text");
-
+const imageInput = document.querySelector("#image");
 const addForm = document.querySelector("#add-form");
 const titleInput = document.querySelector("#title");
 const categoryInput = document.querySelector("#category");
+   /* Bouton Valider de la deuxième modale */
+const validateButton = document.querySelector("#validate-button");
+ 
+/* Vérifie si le formulaire est complet */
+function checkFormValidity() {
 
+    /* Vérifie qu'une image est sélectionnée */
+    const hasImage = imageInput.files.length > 0;
+
+    /* Vérifie que le titre n'est pas vide */
+    const hasTitle = titleInput.value.trim() !== "";
+
+    /* Vérifie qu'une catégorie est sélectionnée */
+    const hasCategory = categoryInput.value !== "";
+
+    /* Active ou désactive le bouton */
+    validateButton.disabled = !(hasImage && hasTitle && hasCategory);
+
+}
 imageInput.addEventListener("change", () => {
 
     const file = imageInput.files[0];
@@ -160,9 +208,21 @@ imageInput.addEventListener("change", () => {
         uploadText.style.display = "none";
     
     }
-    
+    /* Vérifie si le formulaire peut être validé */
+    checkFormValidity();  
 
 });
+
+/* Vérifie le formulaire lorsque l'utilisateur saisit le titre */
+titleInput.addEventListener("input", () => {
+    checkFormValidity();
+});
+
+/* Vérifie le formulaire lorsque la catégorie change */
+categoryInput.addEventListener("change", () => {
+    checkFormValidity();
+});
+
 closeModal.addEventListener("click", () => {
 
     modal.style.display = "none";

@@ -161,7 +161,9 @@
 	
 				<label for="category">Catégorie</label>
 				<select id="category">
-	
+	                <!-- Aucune catégorie sélectionnée au départ -->
+                    <option value="" selected></option>
+
 					<option value="1">Objets</option>
 					<option value="2">Appartements</option>
 					<option value="3">Hôtels & restaurants</option>
@@ -170,7 +172,10 @@
 
 				<div class="separator"></div>
 
-				<button type="submit">Valider</button>
+				<!-- Bouton de validation désactivé par défaut -->
+                <button type="submit" id="validate-button" disabled>
+                    Valider
+                </button>
 				
 
 			</form>
