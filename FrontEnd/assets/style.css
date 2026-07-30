@@ -57,7 +57,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-    max-width: 1140px;
+    max-width: 1000px;
 	margin: 30px auto; 
 }
 
@@ -93,8 +93,13 @@ nav ul {
 	list-style-type: none;
 
 }
+
+/* Met en évidence la page actuellement affichée */
+nav li.active {
+    font-weight: 600;
+}
 nav li {
-	padding: 0 10px;
+	padding: 0 20px;
 	font-size: 1.2em;
 }
 
@@ -585,7 +590,7 @@ footer nav ul {
 #login h2 {
     font-size: 20px;
     text-align: center;
-    margin-bottom: 35px; /* Espace entre le titre et le formulaire */
+    margin-bottom: 25px; /* Espace entre le titre et le formulaire */
 }
 
 /* Style des champs de saisie de la page de connexion */
