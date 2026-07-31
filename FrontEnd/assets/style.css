@@ -616,7 +616,17 @@ footer nav ul {
 #login-form input[type="password"] {
     margin-bottom: 10px;
 }
+#error-message{
 
+    color: red;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    margin: 10px 0;
+
+}
 /* Ajoute un espace plus petit sous le bouton */
 #login-form input[type="submit"] {
     margin-bottom: 5px;

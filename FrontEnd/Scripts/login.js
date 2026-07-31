@@ -28,11 +28,27 @@ form.addEventListener("submit", async (event) => {
     
     const data = await response.json();
 
-     console.log(data);
-
-if (data.token) {
-    localStorage.setItem("token", data.token);
-    window.location.href = "index.html";
-}
-
+    console.log(data);
+    
+    // On récupère l'emplacement où afficher le message d'erreur
+    const errorMessage = document.querySelector("#error-message");
+    
+    // On efface un ancien message d'erreur s'il existe
+    errorMessage.textContent = "";
+    
+    if (response.ok) {
+    
+        // Si la connexion réussit, on enregistre le token
+        localStorage.setItem("token", data.token);
+    
+        // Puis on redirige vers la page d'accueil
+        window.location.href = "index.html";
+    
+    } else {
+    
+        // Si les identifiants sont incorrects,
+        // on affiche un message d'erreur en rouge
+        errorMessage.textContent = "Email ou mot de passe incorrect.";
+    
+    }
 });
