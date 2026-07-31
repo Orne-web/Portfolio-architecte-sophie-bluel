@@ -57,7 +57,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-    max-width: 1000px;
+    max-width: 1140px;
 	margin: 30px auto; 
 }
 
@@ -98,9 +98,10 @@ nav ul {
 nav li.active {
     font-weight: 600;
 }
+
 nav li {
-	padding: 0 20px;
-	font-size: 1.2em;
+    padding: 0 10px; /* Réduit l’espace entre les éléments du menu */
+    font-size: 1.2em;  /* Remet une taille de texte plus proche de la maquette */
 }
 
 li:hover {
@@ -112,6 +113,7 @@ li:hover {
     align-items: center;
     gap: 60px;
 }
+
 
 /* La photo et le texte occupent chacun une moitié */
 #introduction figure,
@@ -301,6 +303,7 @@ footer nav ul {
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 .modal-gallery figure {
@@ -320,7 +323,7 @@ footer nav ul {
     width: 630px;
     max-width: 90%;
 
-    margin: 5% auto;
+    margin: 2% auto;
 
     padding: 30px;
 
@@ -328,8 +331,9 @@ footer nav ul {
 
     position: relative;
 
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: none;   /* Retire la limite de hauteur */
+    overflow-y: visible; /* Supprime la barre de défilement interne */
+    
 
 }
 .modal-gallery figure {
@@ -386,7 +390,7 @@ footer nav ul {
 
 .image-upload i {
 
-    font-size: 45px;
+    font-size: 30px;
     color: #B9C5CC;
     margin-bottom: 10px;
 
@@ -397,7 +401,7 @@ footer nav ul {
     background: #CBD6DC;
     color: #306685;
 
-    padding: 10px 25px;
+    padding: 10px 20px;
     border-radius: 25px;
 
     cursor: pointer;
@@ -425,8 +429,8 @@ footer nav ul {
 }
 .modal-content {
 
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: none;      /* La modale n’a plus de hauteur maximale */
+    overflow-y: visible;  /* Supprime la barre de défilement interne */
 
 }
 #add-form {
@@ -476,18 +480,15 @@ footer nav ul {
 
     position: relative;
 
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: none;      /* La modale n’a plus de hauteur maximale */
+    overflow-y: visible;  /* Supprime la barre de défilement interne */
 
 }
-#add-modal h3 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+
 
 #add-form button {
 
-    width: 240px;
+    width: 200px;
     height: 40px;
 
     align-self: center;
@@ -513,13 +514,13 @@ footer nav ul {
 }
 #add-form button {
     display: block;
-    width: 240px;
-    height: 40px;
+    width: 200px;
+    height: 30px;
 
     align-self: center;
 
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 
     cursor: pointer;
 }
@@ -531,22 +532,28 @@ footer nav ul {
     background-color: #B3B3B3;
 
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
 }
-#modal h3 {
 
-    text-align: center;
-    margin-bottom: 30px;
-
-}
+   #modal h3,
+   #add-modal h3 {
+   
+       text-align: center;
+   
+       font-size: 22px;      /* Taille proche de la maquette */
+       font-weight: 400;      /* Police normale comme sur Figma */
+   
+       margin-bottom: 30px;
+   
+   }
 #add-photo {
 
-    width: 240px;
-    height: 40px;
+    width: 200px;
+    height: 30px;
 
     display: block;
-    margin: 20px auto;
+    margin: 30px auto;
 
     border: none;
     border-radius: 25px;

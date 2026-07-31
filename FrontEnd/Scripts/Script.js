@@ -226,7 +226,7 @@ categoryInput.addEventListener("change", () => {
 closeModal.addEventListener("click", () => {
 
     modal.style.display = "none";
-
+    
 });
 
 closeAddModal.addEventListener("click", () => {
