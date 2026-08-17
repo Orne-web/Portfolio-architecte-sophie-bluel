@@ -92,72 +92,117 @@ function displayWorks(worksList) {
     });
 }
 
-getWorks();
+/* Récupère les catégories depuis l'API */
+async function getCategories() {
 
-/* Récupère tous les boutons de filtre */
-const filterButtons = document.querySelectorAll(".filters button");
+    /* Envoie une requête GET vers l'API des catégories */
+    const response = await fetch("http://localhost:5678/api/categories");
 
-const allButton = document.querySelector("#all");
-const objectsButton = document.querySelector("#objects");
-const apartmentsButton = document.querySelector("#apartments");
-const hotelsButton = document.querySelector("#hotels");
+    /* Transforme la réponse JSON en tableau JavaScript */
+    const categories = await response.json();
 
-/* Active automatiquement le bouton "Tous" au chargement */
-allButton.classList.add("active");
+    /* Envoie les catégories à la fonction qui créera les boutons */
+    displayFilters(categories);
 
-/* Change le bouton actif lorsqu'un filtre est sélectionné */
-function setActiveFilter(selectedButton) {
+    /* Utilise aussi les catégories pour remplir le select de la modale */
+    displayCategoryOptions(categories);
+}
+/* Remplit le menu déroulant des catégories avec les données de l'API */
+function displayCategoryOptions(categories) {
 
-    /* Retire la classe active de tous les boutons */
-    filterButtons.forEach(button => {
-        button.classList.remove("active");
+    /* Récupère le select de la deuxième modale */
+    const categorySelect = document.querySelector("#category");
+
+    /* Vide le select avant d'ajouter les options */
+    categorySelect.innerHTML = "";
+
+    /* Ajoute une option vide par défaut */
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "";
+
+    categorySelect.appendChild(defaultOption);
+
+    /* Crée une option pour chaque catégorie récupérée depuis l'API */
+    categories.forEach(category => {
+
+        const option = document.createElement("option");
+
+        /* L'id de la catégorie devient la valeur envoyée au backend */
+        option.value = category.id;
+
+        /* Le nom affiché vient directement de l'API */
+        option.textContent = category.name;
+
+        categorySelect.appendChild(option);
+    });
+}
+getWorks();  /* création des filtres dynamiquement */
+
+/*  charge les catégories au démarrage de la page */
+getCategories();
+/* Crée les boutons de filtres à partir des catégories récupérées depuis l'API */
+function displayFilters(categories) {
+
+    /* Récupère le conteneur vide des filtres */
+    const filtersContainer = document.querySelector("#filters");
+
+    /* Vide le conteneur au cas où il contiendrait déjà des boutons */
+    filtersContainer.innerHTML = "";
+
+    /* Crée d'abord le bouton "Tous" */
+    const allButton = document.createElement("button");
+    allButton.textContent = "Tous";
+    allButton.classList.add("active");
+
+    /* Au clic, affiche tous les projets */
+    allButton.addEventListener("click", () => {
+        displayWorks(works);
+
+        /* Retire l'état actif des autres boutons */
+        document.querySelectorAll(".filters button").forEach(button => {
+            button.classList.remove("active");
+        });
+
+        /* Rend le bouton "Tous" actif */
+        allButton.classList.add("active");
     });
 
-    /* Ajoute la classe active au bouton qui vient d'être cliqué */
-    selectedButton.classList.add("active");
+    /* Ajoute le bouton "Tous" dans le conteneur */
+    filtersContainer.appendChild(allButton);
+
+    /* Crée un bouton pour chaque catégorie reçue depuis l'API */
+    categories.forEach(category => {
+
+        const button = document.createElement("button");
+
+        /* Le nom du bouton vient directement de l'API */
+        button.textContent = category.name;
+
+        button.addEventListener("click", () => {
+
+            /* Filtre les projets selon l'id de la catégorie sélectionnée */
+            const filteredWorks = works.filter(work => {
+                return work.categoryId === category.id;
+            });
+
+            /* Affiche uniquement les projets filtrés */
+            displayWorks(filteredWorks);
+
+            /* Retire la classe active de tous les boutons */
+            document.querySelectorAll(".filters button").forEach(filterButton => {
+                filterButton.classList.remove("active");
+            });
+
+            /* Rend le bouton sélectionné actif */
+            button.classList.add("active");
+        });
+
+        /* Ajoute le bouton dans le conteneur */
+        filtersContainer.appendChild(button);
+    });
 }
 
-allButton.addEventListener("click", () => {
-
-    /* Affiche tous les projets */
-    displayWorks(works);
-
-    /* Active visuellement le bouton "Tous" */
-    setActiveFilter(allButton);
-});
-
-objectsButton.addEventListener("click", () => {
-
-    /* Garde uniquement les projets de la catégorie Objets */
-    const objectsWorks = works.filter(work => work.categoryId === 1);
-
-    displayWorks(objectsWorks);
-
-    /* Active visuellement le bouton "Objets" */
-    setActiveFilter(objectsButton);
-});
-
-apartmentsButton.addEventListener("click", () => {
-
-    /* Garde uniquement les projets de la catégorie Appartements */
-    const apartmentsWorks = works.filter(work => work.categoryId === 2);
-
-    displayWorks(apartmentsWorks);
-
-    /* Active visuellement le bouton "Appartements" */
-    setActiveFilter(apartmentsButton);
-});
-
-hotelsButton.addEventListener("click", () => {
-
-    /* Garde uniquement les projets de la catégorie Hôtels et restaurants */
-    const hotelsWorks = works.filter(work => work.categoryId === 3);
-
-    displayWorks(hotelsWorks);
-
-    /* Active visuellement le bouton "Hôtels & restaurants" */
-    setActiveFilter(hotelsButton);
-});
 
 const modifyBtn = document.querySelector("#modify-btn");
 const modal = document.querySelector("#modal");
